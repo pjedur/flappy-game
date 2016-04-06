@@ -1,4 +1,4 @@
-window.Pipes = (function() {
+/*window.Pipes = (function() {
   'use strict';
 
   var Pipes = function(el, game) {
@@ -30,3 +30,4 @@ window.Pipes = (function() {
 
   return Pipes;
 })();
+*/
