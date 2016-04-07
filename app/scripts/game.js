@@ -1,4 +1,3 @@
-
 window.Game = (function() {
 	'use strict';
 
@@ -9,10 +8,6 @@ window.Game = (function() {
 	 */
 	var Game = function(el) {
 		this.el = el;
-
-
-
-
 		this.pipe   = new window.Pipes(this.el.find('.Pipes'), this);
 		this.player = new window.Player(this.el.find('.Player'), this, this.pipe);
 		this.ground = new window.Ground(this.el.find('.Ground'), this);
@@ -39,11 +34,8 @@ window.Game = (function() {
 
 		// Update game entities.
 		this.player.onFrame(delta);
-
 		this.ground.onFrame(delta);
-
 		this.pipe.onFrame(delta);
-
 
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);

@@ -18,6 +18,7 @@ window.Player = (function() {
 		this.el = el;
 		this.game = game;
 		this.acceleration = 0;
+		this.rotation = 0;
 		this.pos = { x: 0, y: 0 };
 		this.pipes = pipes;
 	};
@@ -29,6 +30,7 @@ window.Player = (function() {
 		this.pos.x = INITIAL_POSITION_X;
 		this.pos.y = INITIAL_POSITION_Y;
 		this.acceleration = 0;
+		this.rotation = 0;
 	};
 
 	Player.prototype.onFrame = function(delta) {
@@ -37,16 +39,17 @@ window.Player = (function() {
 
 		if(Controls.didJump()) {
 			this.acceleration = 0;
-			this.pos.y -= delta * SPEED*27   ;
+			this.pos.y -= delta * SPEED*27;
+			this.rotation = 23;
 
-			//this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
-			this.el.css('transform','translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + 23 + 'deg)');
+			this.el.css('transform','translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + this.rotation + 'deg)');
 		}
 		else {
-			this.acceleration += 0.013;
+			this.acceleration += 0.016;
 			this.pos.y += delta * SPEED + this.acceleration;
-			//this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
-			this.el.css('transform','translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + (23) + 'deg)');
+
+			this.rotation < -89 ? this.rotation : this.rotation -= 2;
+			this.el.css('transform','translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + -this.rotation + 'deg)');
 		}
 
 	};
@@ -65,9 +68,10 @@ window.Player = (function() {
 	Player.prototype.checkCollisionWithPipes = function() {
 		//console.log("X: [%d] Y: [%d]", this.pos.x, this.pos.y);
 		//console.log("PIPE X: [%d] PIPE Y: [%d]", this.pipes.pos.x, this.pipes.pos.y);
-		if(this.pos.x + WIDTH === this.pipes.pos.x + 10) {
+		if(this.pos.x  === this.pipes.pos.x) {
+			console.log("HER");
 			//console.log("hit");
-			return this.game.gameover();
+			//return this.game.gameover();
 		}
 	}
 
