@@ -48,9 +48,13 @@ window.Pipes = (function() {
 
     for(var i = 0; i < this.el.length; i++) {
       this.pipes[i].x -= delta * SPEED;
+      if(this.pipes[i].x <= -this.game.WORLD_WIDTH-35){
+          this.pipes[i].x = 0;
+      }
       console.log(this.el[i])
       this.el[i].css('transform', 'translate(' + this.pipes[i].x + 'em, ' + this.pipes[i].y + 'em)');
     }
+
 
     //this.pos.x -= delta * SPEED;
     //this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
