@@ -37,11 +37,8 @@ window.Player = (function() {
 
 		if(Controls.didJump()) {
 			this.acceleration = 0;
-<<<<<<< HEAD
 			this.pos.y -= delta * SPEED*27   ;
-=======
-			this.pos.y -= delta * SPEED*30   ;
->>>>>>> origin/master
+
 			//this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
 			this.el.css('transform','translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + 23 + 'deg)');
 		}
