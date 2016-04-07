@@ -43,6 +43,7 @@ window.Player = (function() {
 			this.pos.y -= delta * SPEED*27;
 			this.rotation = 23;
 			this.sound.currentTime = 0;
+			this.sound.volume = 0.1;
 			this.sound.play();
 
 			this.el.css('transform','translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + this.rotation + 'deg)');
@@ -73,11 +74,11 @@ window.Player = (function() {
 		//console.log("X: [%d] Y: [%d]", this.pos.x, this.pos.y);
 		//console.log("PIPE X: [%d] PIPE Y: [%d]", this.pipes.pos.x, this.pipes.pos.y);
 		if(this.pos.x  === this.pipes.pos.x) {
-			console.log("HER");
+			console.log('HER');
 			//console.log("hit");
 			//return this.game.gameover();
 		}
-	}
+	};
 
 	return Player;
 
