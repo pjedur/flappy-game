@@ -34,12 +34,12 @@ window.Player = (function() {
 
 		if(Controls.didJump()) {
 			this.acceleration = 0;
-			this.pos.y -= delta * SPEED*25   ;
+			this.pos.y -= delta * SPEED*27   ;
 			//this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
 			this.el.css('transform','translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + 23 + 'deg)');
 		}
 		else {
-			this.acceleration += 0.04;
+			this.acceleration += 0.013;
 			this.pos.y += delta * SPEED + this.acceleration;
 			//this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
 			this.el.css('transform','translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + (23) + 'deg)');

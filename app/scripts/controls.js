@@ -16,10 +16,10 @@ window.Controls = (function() {
     };
 
     Controls.prototype._onKeyPress = function(e) {
-      if (e.keyCode === 32 || e.type === 'mousedown') {
-          this._didJump = true;
-      }
-    }
+        if (e.keyCode === 32 || e.type === 'mousedown') {
+            this._didJump = true;
+        }
+    };
 
     /**
      * Only answers true once until a key is pressed again.

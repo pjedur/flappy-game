@@ -36,6 +36,15 @@
 	*/
 
 }
+.Ground {
+	position: absolute;
+	width: 122.4em;
+	height: 7.6em;
+	margin-top: 50em;
+	background-image: url('/images/ground.png');
+	background-repeat: repeat-x;
+	z-index: 1;
+}
 
 .Pipes {
 	position: absolute;
