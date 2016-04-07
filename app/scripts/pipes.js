@@ -18,6 +18,8 @@ window.Pipes = (function() {
         //this.pipes[i] = {};
         this.pipes[i] = { x: INITIAL_POSITION_X, y: INITIAL_POSITION_Y };
         INITIAL_POSITION_X += 45;
+        rand = (Math.random() * 20) + 10;
+        this.el[i].css({"height" : rand+'em'});
         //console.log(this.pipes[i].x)
         //console.log(this.el[i]);
       }
@@ -26,16 +28,19 @@ window.Pipes = (function() {
   };
 
   Pipes.prototype.reset = function(i) {
+
     //this.pos.x = INITIAL_POSITION_X;
     //this.pos.y = INITIAL_POSITION_Y;
-    //INITIAL_POSITION_X = 0;
-    //INITIAL_POSITION_Y = 0;
+    INITIAL_POSITION_X = 0;
+    INITIAL_POSITION_Y = 0;
   //  this.pipes[i].x = 0;
   //  this.pipes[i].y = 0;
-    /*for(var i = 0; i < this.pipes.length; i++) {
+    for(var i = 0; i < this.pipes.length; i++) {
       this.pipes[i] = { x: INITIAL_POSITION_X, y: INITIAL_POSITION_Y};
-      INITIAL_POSITION_X += 15;
-    }*/
+      rand = (Math.random() * 20) + 10;
+      this.el[i].css({"height" : rand+'em'});
+      INITIAL_POSITION_X += 45;
+    }
   };
 
   Pipes.prototype.onFrame = function(delta) {
