@@ -21,6 +21,7 @@ window.Player = (function() {
 		this.rotation = 0;
 		this.pos = { x: 0, y: 0 };
 		this.pipes = pipes;
+		this.sound = new Audio('/audio/Upptaka.m4a');
 	};
 
 	/**
@@ -41,8 +42,11 @@ window.Player = (function() {
 			this.acceleration = 0;
 			this.pos.y -= delta * SPEED*27;
 			this.rotation = 23;
+			this.sound.currentTime = 0;
+			this.sound.play();
 
 			this.el.css('transform','translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + this.rotation + 'deg)');
+			return;
 		}
 		else {
 			this.acceleration += 0.016;
