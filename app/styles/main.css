@@ -39,8 +39,8 @@
 .Ground {
 	position: absolute;
 	width: 122.4em;
-	height: 7.6em;
-	margin-top: 50em;
+	height: 5.6em;
+	bottom: 0;
 	background-image: url('/images/ground.png');
 	background-repeat: repeat-x;
 	z-index: 1;
