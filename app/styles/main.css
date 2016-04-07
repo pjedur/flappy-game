@@ -46,7 +46,7 @@
 	z-index: 1;
 }
 
-.Pipes {
+.Pipe0 {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -55,6 +55,22 @@
 	background: blue;
 }
 
+.Pipe1 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 7em;
+	height: 20em;
+	background: blue;
+}
+.Pipe2 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 7em;
+	height: 20em;
+	background: blue;
+}
 
 @keyframes flap {
 	from {

@@ -1,6 +1,7 @@
 window.Game = (function() {
 	'use strict';
 
+	var Controls = window.Controls;
 	/**
 	 * Main game class.
 	 * @param {Element} el jQuery element containing the game.
@@ -8,11 +9,21 @@ window.Game = (function() {
 	 */
 	var Game = function(el) {
 		this.el = el;
-		this.pipe   = new window.Pipes(this.el.find('.Pipes'), this);
+		this.pipes = [];
+
+		for(var i = 0; i < 6; i++) {
+			this.pipes[i] = this.el.find('.Pipe'+ i);
+		}
+
+		//this.pipe   = new window.Pipes(this.el.find('.Pipes'), this);
+		this.pipe   = new window.Pipes(this.pipes, this);
 		this.player = new window.Player(this.el.find('.Player'), this, this.pipe);
 		this.ground = new window.Ground(this.el.find('.Ground'), this);
-		this.isPlaying = false;
+		this.BackgroundSound = new Audio('/audio/background.mp3');
+		this.sound           = new Audio('/audio/Upptaka.m4a');
 
+		this.isPlaying = false;
+		this.isIdle    = true;
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
@@ -27,10 +38,9 @@ window.Game = (function() {
 		if (!this.isPlaying) {
 			return;
 		}
-
 		// Calculate how long since last frame in seconds.
 		var now = +new Date() / 1000,
-				delta = now - this.lastFrame;
+		delta = now - this.lastFrame;
 		this.lastFrame = now;
 
 		// Update game entities.
@@ -48,14 +58,18 @@ window.Game = (function() {
 	Game.prototype.start = function() {
 		this.reset();
 
-		this.BackgroundSound = new Audio('/audio/background.mp3');
 		this.BackgroundSound.currentTime = 0;
 		this.BackgroundSound.loop = true;
-		this.BackgroundSound.play();
+		//this.BackgroundSound.play();
+		this.sound.currentTime = 0;
+		this.sound.volume = 0.1;
+
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;
 		window.requestAnimationFrame(this.onFrame);
+
 		this.isPlaying = true;
+		this.isIdle = true;
 	};
 
 	/**
