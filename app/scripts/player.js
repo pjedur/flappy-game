@@ -65,6 +65,8 @@ window.Player = (function() {
 			this.pos.y + HEIGHT + GROUND_SIZE > this.game.WORLD_HEIGHT) {
 			return this.game.gameover();
 		}
+
+
 	};
 
 	// X hja pipe
@@ -73,8 +75,13 @@ window.Player = (function() {
 	Player.prototype.checkCollisionWithPipes = function() {
 		//console.log("X: [%d] Y: [%d]", this.pos.x, this.pos.y);
 		//console.log("PIPE X: [%d] PIPE Y: [%d]", this.pipes.pos.x, this.pipes.pos.y);
-
-		console.log();
+			//console.log(this.pipes.el[0].offset());
+			if((this.pipes.el[0].offset().left <= 748 && this.pipes.el[0].offset().left >= 743) || 
+			   (this.pipes.el[2].offset().left <= 749 && this.pipes.el[2].offset().left >= 744) || 
+			   (this.pipes.el[4].offset().left <= 749 && this.pipes.el[4].offset().left >= 744)){
+				console.log("stig");
+			}
+	
 	}
 		/*
 		if(Math.floor(this.pos.y) === Math.floor(this.pipes.pos.x + this.game.WORLD_WIDTH - 10)) {

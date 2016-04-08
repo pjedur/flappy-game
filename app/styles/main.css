@@ -55,6 +55,13 @@
 	z-index: 1;
 }
 
+.mute{
+	position: absolute;
+	font-size: 20pt;
+	margin-left: 5px;
+	margin-top: 5px;
+	width: auto;
+}
 
 .Background1 {
 	position: absolute;
