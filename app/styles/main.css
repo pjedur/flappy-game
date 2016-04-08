@@ -5,6 +5,7 @@
 	width: 5em;
 	height: 5em;
 	background: blue;
+	background-size: cover;
 }
 
 @keyframes drop {
@@ -36,14 +37,37 @@
 	*/
 
 }
-.Ground {
+
+.Ground1 {
 	position: absolute;
-	width: 122.4em;
+	width: 122em;
 	height: 5.6em;
 	bottom: 0;
 	background-image: url('/images/ground.png');
-	background-repeat: repeat-x;
 	z-index: 1;
+}
+.Ground2 {
+	position: absolute;
+	width: 122em;
+	height: 5.6em;
+	bottom: 0;
+	background-image: url('/images/ground.png');
+	z-index: 1;
+}
+
+
+.Background1 {
+	position: absolute;
+	width: 142em;
+	height: 57.6em;
+	background-image: url('/images/background.png');
+	
+}
+.Background2 {
+	position: absolute;
+	width: 142em;
+	height: 57.6em;
+	background-image: url('/images/background.png');
 }
 
 .Pipe0 {
@@ -98,6 +122,7 @@
   height: 20em;
   background: blue;
 }
+
 @keyframes flap {
 	from {
 		transform: rotateX(0);
@@ -159,5 +184,5 @@ height: 57.6em;
 margin-left: -51.2em;
 margin-top: -28.8em;
 overflow: hidden;
-background: red;
+
 }

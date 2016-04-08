@@ -52,9 +52,9 @@ window.Pipes = (function() {
 
 
   Pipes.prototype.checkCollisionWithBounds = function(i) {
-    if(this.pipes[i].x <= -this.game.WORLD_WIDTH - 30) {
-      this.pipes[i].x = 5;
-      this.pipes[i+1].x = 5;
+    if(this.pipes[i].x <= -this.game.WORLD_WIDTH - 25) {
+      this.pipes[i].x = 10;
+      this.pipes[i+1].x = 10;
 
       rand = (Math.random() * 20) + 7;
       bottom = (this.game.WORLD_HEIGHT - rand - 15);

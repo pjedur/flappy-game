@@ -11,6 +11,13 @@ window.Game = (function() {
 	var Game = function(el) {
 		this.el = el;
 		this.pipes = [];
+		this.Backgrounds = [];
+		this.grounds = [];
+
+		this.Backgrounds[0] = this.el.find('.Background1');
+		this.Backgrounds[1] = this.el.find('.Background2');
+		this.grounds[0] = this.el.find('.Ground1');
+		this.grounds[1] = this.el.find('.Ground2');
 
 		for(var i = 0; i < PIPES; i+=2) {
 			this.pipes[i]   = this.el.find('.Pipe'+ i);
@@ -20,7 +27,9 @@ window.Game = (function() {
 		//this.pipe   = new window.Pipes(this.el.find('.Pipes'), this);
 		this.pipe   = new window.Pipes(this.pipes, this);
 		this.player = new window.Player(this.el.find('.Player'), this, this.pipe);
-		this.ground = new window.Ground(this.el.find('.Ground'), this);
+		this.ground = new window.Ground(this.grounds, this);
+		this.Background = new window.Background(this.Backgrounds, this);
+
 		this.BackgroundSound = new Audio('/audio/background.mp3');
 		this.sound           = new Audio('/audio/Upptaka.m4a');
 		this.lostSound = new Audio('/audio/lost.mp3');
@@ -50,6 +59,7 @@ window.Game = (function() {
 		this.player.onFrame(delta);
 		this.ground.onFrame(delta);
 		this.pipe.onFrame(delta);
+		this.Background.onFrame(delta);
 
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
