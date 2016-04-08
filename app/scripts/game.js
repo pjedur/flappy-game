@@ -2,6 +2,7 @@ window.Game = (function() {
 	'use strict';
 
 	var Controls = window.Controls;
+	var PIPES    = 6;
 	/**
 	 * Main game class.
 	 * @param {Element} el jQuery element containing the game.
@@ -11,8 +12,9 @@ window.Game = (function() {
 		this.el = el;
 		this.pipes = [];
 
-		for(var i = 0; i < 6; i++) {
-			this.pipes[i] = this.el.find('.Pipe'+ i);
+		for(var i = 0; i < PIPES; i+=2) {
+			this.pipes[i]   = this.el.find('.Pipe'+ i);
+			this.pipes[i+1] = this.el.find('.Pipe'+ (i+1));
 		}
 
 		//this.pipe   = new window.Pipes(this.el.find('.Pipes'), this);
