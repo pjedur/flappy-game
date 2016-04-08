@@ -50,9 +50,10 @@ window.Pipes = (function() {
 
 
   Pipes.prototype.checkCollisionWithBounds = function(i) {
-    if(this.pipes[i].x <= -this.game.WORLD_WIDTH - 35) {
-      this.pipes[i].x    = 0;
-      this.pipes[i+1]. x = 0;
+    if(this.pipes[i].x <= -this.game.WORLD_WIDTH - 30) {
+      this.pipes[i].x = 5;
+      this.pipes[i+1].x = 5;
+
       rand = (Math.random() * 20) + 10;
       this.el[i].css({"height" : rand+"em"});
       this.el[i+1].css({"bottom" : 0});
