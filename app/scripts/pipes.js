@@ -7,6 +7,7 @@ window.Pipes = (function() {
   var INITIAL_POSITION_X = 0;
   var INITIAL_POSITION_Y = 0;
   var rand = 0;
+  var bottom = 0;
 
   var Pipes = function(el, game) {
       this.el   = el;
@@ -20,8 +21,8 @@ window.Pipes = (function() {
         INITIAL_POSITION_X += 45;
         rand = (Math.random() * 20) + 10;
         this.el[i].css({"height" : rand+'em'});
-        this.el[i+1].css({"bottom": 0});
-        this.el[i+1].css({"height" : 6});
+        this.el[i+1].css({"bottom": '0'});
+        this.el[i+1].css({"height" : '6em'});
       }
   };
 
@@ -32,10 +33,11 @@ window.Pipes = (function() {
     for(var i = 0; i < this.pipes.length; i+=2) {
       this.pipes[i] = { x: INITIAL_POSITION_X, y: INITIAL_POSITION_Y};
       this.pipes[i+1] = { x: INITIAL_POSITION_X, y: INITIAL_POSITION_Y};
-      rand = (Math.random() * 20) + 10;
+      rand = (Math.random() * 20) + 7;
+      bottom = (this.game.WORLD_HEIGHT - rand - 15);
       this.el[i].css({"height" : rand+'em'});
-      this.el[i+1].css({"bottom":0});
-      this.el[i+1].css({"height":6});
+      this.el[i+1].css({"bottom":'0'});
+      this.el[i+1].css({"height": bottom +'em'});
       INITIAL_POSITION_X += 45;
     }
   };
@@ -54,9 +56,12 @@ window.Pipes = (function() {
       this.pipes[i].x = 5;
       this.pipes[i+1].x = 5;
 
-      rand = (Math.random() * 20) + 10;
+      rand = (Math.random() * 20) + 7;
+      bottom = (this.game.WORLD_HEIGHT - rand - 15);
       this.el[i].css({"height" : rand+"em"});
       this.el[i+1].css({"bottom" : 0});
+      this.el[i+1].css({"height": bottom +'em'});
+
     }
     else {
       this.el[i].css('transform', 'translate(' + this.pipes[i].x + 'em, ' + this.pipes[i].y + 'em)');

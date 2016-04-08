@@ -57,7 +57,7 @@
 
 .Pipe1 {
 	position: absolute;
-	top: 0;
+	bottom: 0;
 	right: 0;
 	width: 7em;
 	height: 20em;
@@ -72,6 +72,32 @@
 	background: blue;
 }
 
+.Pipe3 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 7em;
+  height: 20em;
+  background: blue;
+}
+
+.Pipe4 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 7em;
+  height: 20em;
+  background: blue;
+}
+
+.Pipe5 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 7em;
+  height: 20em;
+  background: blue;
+}
 @keyframes flap {
 	from {
 		transform: rotateX(0);
