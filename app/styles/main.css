@@ -41,7 +41,7 @@
 	width: 122.4em;
 	height: 5.6em;
 	bottom: 0;
-	background-image: url('/images/ground1.jpg');
+	background-image: url('/images/ground.png');
 	background-repeat: repeat-x;
 	z-index: 1;
 }

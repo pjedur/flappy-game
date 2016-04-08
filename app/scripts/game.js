@@ -21,6 +21,7 @@ window.Game = (function() {
 		this.ground = new window.Ground(this.el.find('.Ground'), this);
 		this.BackgroundSound = new Audio('/audio/background.mp3');
 		this.sound           = new Audio('/audio/Upptaka.m4a');
+		this.lostSound = new Audio('/audio/lost.mp3');
 
 		this.isPlaying = false;
 		this.isIdle    = true;
@@ -86,6 +87,8 @@ window.Game = (function() {
 	Game.prototype.gameover = function() {
 		this.isPlaying = false;
 		this.BackgroundSound.pause();
+		this.lostSound.currentTime = 1.5;
+		this.lostSound.play();
 		// Should be refactored into a Scoreboard class.
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');
