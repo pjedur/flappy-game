@@ -46,38 +46,32 @@ window.Pipes = (function() {
   Pipes.prototype.onFrame = function(delta) {
   //  this.checkCollisionWithBounds();
 
-    for(var i = 0; i < this.el.length; i++) {
+    for (var i = 0; i < this.pipes.length; i++) {
       this.pipes[i].x -= delta * SPEED;
-      if(this.pipes[i].x <= -this.game.WORLD_WIDTH-35){
-          this.pipes[i].x = 0;
-      }
-      console.log(this.el[i])
-      this.el[i].css('transform', 'translate(' + this.pipes[i].x + 'em, ' + this.pipes[i].y + 'em)');
+      this.checkCollisionWithBounds(parseInt(i));
     }
-
-
-    //this.pos.x -= delta * SPEED;
-    //this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
   };
 
 
-  Pipes.prototype.checkCollisionWithBounds = function() {
-    /*
-		if (this.pos.x + this.game.WORLD_WIDTH < 0) {
-      this.reset();
+  Pipes.prototype.checkCollisionWithBounds = function(i) {
+    if(this.pipes[i].x <= -this.game.WORLD_WIDTH - 35) {
+      this.pipes[i].x = 0;
       rand = (Math.random() * 20) + 10;
-      this.el.css({"height" : rand+'em'});
-		}*/
+      this.el[i].css({"height" : rand+"em"});
+    }
+    else {
+      this.el[i].css('transform', 'translate(' + this.pipes[i].x + 'em, ' + this.pipes[i].y + 'em)');
+    }
 
+    /*
     for(var i = 0; i < this.pipes.length; i++) {
       if(this.pipes[i].x + this.game.WORLD_WIDTH < 0) {
-        //this.reset(i);
         this.pipes[i].x = 0;
         this.pipes[i].y = 0;
         rand = (Math.random() * 20) + 10;
         this.el[i].css({"height" : rand+'em'});
       }
-    }
+    }*/
 	};
 
   return Pipes;
