@@ -21,6 +21,7 @@ window.Player = (function() {
 		this.pos = { x: 0, y: 0 };
 		this.pipes = pipes;
 		this.score = 0;
+		this.highScore = 0;
 	};
 
 	/**
@@ -31,6 +32,8 @@ window.Player = (function() {
 		this.pos.y        = INITIAL_POSITION_Y;
 		this.acceleration = 0;
 		this.rotation     = 0;
+		this.score        = -1;
+		this.lastX        = 0;
 	};
 
 	Player.prototype.onFrame = function(delta) {
@@ -39,11 +42,9 @@ window.Player = (function() {
 
 		if(Controls.didJump()) {
 			this.game.isPlaying = true;
-			
 			this.acceleration = 0;
 			this.rotation     = 23;
 			this.pos.y -= delta * SPEED*27;
-
 			this.game.sound.currentTime = 0;
 			this.game.sound.play();
 
@@ -61,35 +62,33 @@ window.Player = (function() {
 	};
 
 	Player.prototype.checkCollisionWithBounds = function() {
-		if (this.pos.x < 0 ||
-			this.pos.x + WIDTH > this.game.WORLD_WIDTH ||
-			this.pos.y + HEIGHT + GROUND_SIZE > this.game.WORLD_HEIGHT) {
+		if (this.pos.y + HEIGHT + GROUND_SIZE > this.game.WORLD_HEIGHT) {
 			return this.game.gameover();
 		}
-
-
 	};
 
-	// X hja pipe
-	// Y hja player
-
 	Player.prototype.checkCollisionWithPipes = function() {
-		//console.log("X: [%d] Y: [%d]", this.pos.x, this.pos.y);
-		//console.log("PIPE X: [%d] PIPE Y: [%d]", this.pipes.pos.x, this.pipes.pos.y);
-			//console.log(this.pipes.el[0].offset());
-			if((this.pipes.el[0].offset().left <= 748 && this.pipes.el[0].offset().left >= 743) || 
-			   (this.pipes.el[2].offset().left <= 749 && this.pipes.el[2].offset().left >= 744) || 
-			   (this.pipes.el[4].offset().left <= 749 && this.pipes.el[4].offset().left >= 744)){
-				console.log("stig");
-				this.score += 1;
+			for (var i = 0; i < this.pipes.pipes.length; i+= 2) {
+
+			//	if(this.pipes.el[i].offset().left <= 749 && this.pipes.el[i].offset().left >= 743) {
+			if(Math.floor(this.pipes.pipes[i].x) === -60) {
+
+					console.log("hit");
+
+				if(this.pipes.pipes[i].y <= this.pos.y && (this.game.WORLD_HEIGHT- 5.6 -this.pipes.pipes[i+1].y) >= this.pos.y) {
+					this.score += 1;
+					if(this.score > this.highScore) {
+						this.highScore = this.score;
+					}
+				}
+				else {
+					return this.game.gameover();
+					//this.score++;
+				}
 			}
-	
+		}
 	}
-		/*
-		if(Math.floor(this.pos.y) === Math.floor(this.pipes.pos.x + this.game.WORLD_WIDTH - 10)) {
-					this.game.gameover();
-			}
-		}*/
+
 
 	return Player;
 

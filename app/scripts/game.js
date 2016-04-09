@@ -25,17 +25,19 @@ window.Game = (function() {
 		}
 
 		//this.pipe   = new window.Pipes(this.el.find('.Pipes'), this);
-		this.pipe   = new window.Pipes(this.pipes, this);
-		this.player = new window.Player(this.el.find('.Player'), this, this.pipe);
-		this.ground = new window.Ground(this.grounds, this);
+		this.pipe       = new window.Pipes(this.pipes, this);
+		this.player     = new window.Player(this.el.find('.Player'), this, this.pipe);
+		this.ground     = new window.Ground(this.grounds, this);
 		this.Background = new window.Background(this.Backgrounds, this);
 
 		this.BackgroundSound = new Audio('/audio/background.mp3');
 		this.sound           = new Audio('/audio/Upptaka.m4a');
-		this.lostSound = new Audio('/audio/lost.mp3');
+		this.lostSound       = new Audio('/audio/lost.mp3');
 
 		this.isPlaying = false;
 		this.isIdle    = true;
+
+
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
@@ -82,7 +84,9 @@ window.Game = (function() {
 		window.requestAnimationFrame(this.onFrame);
 
 		this.isPlaying = true;
+
 		this.isIdle = true;
+		this.isMuted = false;
 	};
 
 	/**
@@ -93,27 +97,43 @@ window.Game = (function() {
 		this.pipe.reset();
 	};
 
-	/**
-	 * Signals that the game is over.
-	 */
-	 	var muted = false;	
-	Game.prototype.Mute = function() {
+
+
+	Game.prototype.mute = function() {
+			if(this.isMuted === true) {
+				this.BackgroundSound.currentTime = 0;
+				this.BackgroundSound.loop = true;
+				this.BackgroundSound.play();
+				this.isMuted = false;
+			}
+			else {
+				this.BackgroundSound.currentTime = 0;
+				this.BackgroundSound.pause();
+				this.isMuted = true;
+			}
+
+	}
+		/*
 		this.BackgroundSound.pause();
 		if(muted === false){
 			this.BackgroundSound.pause();
-		}
+		}*/
 
-	};
+
+	/**
+	* Signals that the game is over.
+	*/
 	Game.prototype.gameover = function() {
 		this.isPlaying = false;
 		this.BackgroundSound.pause();
 		this.lostSound.currentTime = 1.5;
 		this.lostSound.play();
-		console.log(this.player.score);
-		document.getElementById('Score').innerHTML = this.player.score;
-		this.player.score = 0;
+
+		document.getElementById('Score').innerHTML = "Your score: " + this.player.score;
+		document.getElementById('highScore').innerHTML = "High score: " + this.player.highScore;
 		// Should be refactored into a Scoreboard class.
 		var that = this;
+
 		var scoreboardEl = this.el.find('.Scoreboard');
 		scoreboardEl
 			.addClass('is-visible')
