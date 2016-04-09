@@ -73,9 +73,9 @@ window.Game = (function() {
 
 		this.BackgroundSound.currentTime = 0;
 		this.BackgroundSound.loop = true;
-		//this.BackgroundSound.play();
+		this.BackgroundSound.play();
 		this.sound.currentTime = 0;
-		this.sound.volume = 0.1;
+		this.sound.volume = 0.2;
 
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;
@@ -96,11 +96,22 @@ window.Game = (function() {
 	/**
 	 * Signals that the game is over.
 	 */
+	 	var muted = false;	
+	Game.prototype.Mute = function() {
+		this.BackgroundSound.pause();
+		if(muted === false){
+			this.BackgroundSound.pause();
+		}
+
+	};
 	Game.prototype.gameover = function() {
 		this.isPlaying = false;
 		this.BackgroundSound.pause();
 		this.lostSound.currentTime = 1.5;
 		this.lostSound.play();
+		console.log(this.player.score);
+		document.getElementById('Score').innerHTML = this.player.score;
+		this.player.score = 0;
 		// Should be refactored into a Scoreboard class.
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');
@@ -112,6 +123,10 @@ window.Game = (function() {
 					that.start();
 				});
 	};
+
+
+
+
 
 	/**
 	 * Some shared constants.

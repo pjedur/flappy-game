@@ -20,6 +20,7 @@ window.Player = (function() {
 		this.rotation = 0;
 		this.pos = { x: 0, y: 0 };
 		this.pipes = pipes;
+		this.score = 0;
 	};
 
 	/**
@@ -80,6 +81,7 @@ window.Player = (function() {
 			   (this.pipes.el[2].offset().left <= 749 && this.pipes.el[2].offset().left >= 744) || 
 			   (this.pipes.el[4].offset().left <= 749 && this.pipes.el[4].offset().left >= 744)){
 				console.log("stig");
+				this.score += 1;
 			}
 	
 	}
