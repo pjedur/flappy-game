@@ -4,9 +4,9 @@ window.Background = (function () {
     var SPEED = 15;
 
     var Background = function (el, game) {
-        this.el = el;
-        this.game = game;
-        this.pos = [];
+        this.el     = el;
+        this.game   = game;
+        this.pos    = [];
         this.pos[0] = {x: 0, y: 0};
         this.pos[1] = {x: 120, y: 0};
     };
@@ -14,7 +14,6 @@ window.Background = (function () {
     Background.prototype.onFrame = function (delta){
         this.pos[0].x -= delta * SPEED;
         this.pos[1].x -= delta * SPEED;
-
 
         if(this.pos[0].x <= -this.game.WORLD_WIDTH - 40){
             this.pos[0].x = 118;

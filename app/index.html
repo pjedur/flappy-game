@@ -24,6 +24,10 @@
         <![endif]-->
 
         <div class="GameCanvas">
+          <button id="mute" >Mute</button>
+          <audio id="song">
+            <source id="play" src="/audio/background.mp3" type="audio/mp3">
+          </audio>
 
             <div class="Background1"></div>
             <div class="Background2"></div>
@@ -49,7 +53,7 @@
                     <span class="Scoreboard-restartText">Restart</span>
                 </button>
             </div>
-            <button class="mute" onclick="window.Game.prototype.mute()" >Mute</button>
+
         </div>
 
         <!-- build:js scripts/vendor.js -->

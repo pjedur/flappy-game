@@ -15,19 +15,26 @@ window.Pipes = (function() {
       this.game = game;
       this.pipes = [];
 
-
       for(var i = 0; i < this.el.length; i+=2) {
         rand = (Math.random() * 20) + 10;
         bottom = (this.game.WORLD_HEIGHT - rand - PIPE_GAP);
-
         this.el[i].css({"height" : rand+'em'});
         this.el[i+1].css({"height" : bottom+'em'});
-
         this.pipes[i]   = { x: INITIAL_POSITION_X, y: rand };
         this.pipes[i+1] = { x: INITIAL_POSITION_X, y: bottom };
         INITIAL_POSITION_X += 45;
       }
   };
+
+  function randomize(index) {
+    rand = (Math.random() * 20) + 10;
+    bottom = (this.game.WORLD_HEIGHT - rand - PIPE_GAP);
+    this.el[i].css({"height" : rand+'em'});
+    this.el[i+1].css({"height" : bottom+'em'});
+    this.pipes[i]   = { x: INITIAL_POSITION_X, y: rand };
+    this.pipes[i+1] = { x: INITIAL_POSITION_X, y: bottom };
+    INITIAL_POSITION_X += 45;
+  }
 
   Pipes.prototype.reset = function(i) {
     INITIAL_POSITION_X = 0;
@@ -36,10 +43,8 @@ window.Pipes = (function() {
     for(var i = 0; i < this.pipes.length; i+=2) {
       rand = (Math.random() * 20) + 7;
       bottom = (this.game.WORLD_HEIGHT - rand - PIPE_GAP);
-
       this.el[i].css({"height" : rand+'em'});
       this.el[i+1].css({"height": bottom +'em'});
-
       this.pipes[i] = { x: INITIAL_POSITION_X, y: rand};
       this.pipes[i+1] = { x: INITIAL_POSITION_X, y: bottom};
       INITIAL_POSITION_X += 45;
@@ -57,23 +62,18 @@ window.Pipes = (function() {
 
   Pipes.prototype.checkCollisionWithBounds = function(i) {
     if(this.pipes[i].x <= -this.game.WORLD_WIDTH - 25) {
-      this.pipes[i].x = 10;
+      this.pipes[i].x   = 10;
       this.pipes[i+1].x = 10;
-
       rand = (Math.random() * 20) + 7;
       bottom = (this.game.WORLD_HEIGHT - rand - PIPE_GAP);
-
       this.el[i].css({"height" : rand+"em"});
       this.el[i+1].css({"height": bottom +'em'});
-
       this.pipes[i].y = rand;
       this.pipes[i+1].y = rand;
-
     }
     else {
       this.el[i].css('transform', 'translateZ(0) translate(' + this.pipes[i].x + 'em');
       this.el[i+1].css('transform', 'translateZ(0) translate(' + this.pipes[i+1].x + 'em');
-
     }
 	};
 
