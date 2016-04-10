@@ -14,6 +14,7 @@ window.Player = (function() {
 	var GROUND_SIZE        = 5.6;
 
 	var Player = function(el, game, pipes) {
+		this.mute     	 = false;
 		this.el           = el;
 		this.game         = game;
 		this.acceleration = 0;
@@ -22,6 +23,7 @@ window.Player = (function() {
 		this.pipes        = pipes;
 		this.score        = 0;
 		this.highScore    = 0;
+
 	};
 
 	/**
@@ -37,14 +39,26 @@ window.Player = (function() {
 	};
 
 	Player.prototype.onFrame = function(delta) {
+		var t2 = document.getElementById("song");
+		if(t2.paused) {
+			this.mute = false;
+		}
+		else {
+			this.mute = true;
+		}
+
 		this.checkCollisionWithBounds();
 
 		if(Controls.didJump()) {
+			console.log(this.game.mute);
 			this.game.isPlaying         = true;
 			this.acceleration           = 0;
 			this.rotation               = 23;
-			this.game.sound.currentTime = 0;
-			this.game.sound.play();
+			if(this.mute){
+				this.game.sound.currentTime = 0;
+				this.game.sound.play();
+			}
+			
 			this.pos.y -= delta * SPEED*23;
 
 
@@ -72,7 +86,6 @@ window.Player = (function() {
 			}
 			if(Math.floor(this.pipes.pipes[i].x) < -60  && Math.floor(this.pipes.pipes[i].x) > -70) {
 				if((this.pipes.pipes[i].y <= this.pos.y) && ((this.game.WORLD_HEIGHT- GROUND_SIZE - this.pipes.pipes[i+1].y) >= this.pos.y)) {
-					console.log('JEIJ');
 				}
 				else {
 					return this.game.gameover();

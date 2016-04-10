@@ -3,7 +3,7 @@ window.Game = (function() {
 
 	var Controls = window.Controls;
 	var PIPES    = 6;
-	var mute     = false;
+	var mute     	 = false;
 
 
 
@@ -16,6 +16,7 @@ window.Game = (function() {
 	 * @constructor
 	 */
 	var Game = function(el) {
+		
 		this.el          = el;
 		this.pipes       = [];
 		this.Backgrounds = [];
@@ -129,8 +130,11 @@ window.Game = (function() {
 		t2.pause();
 
 		//this.BackgroundSound.pause();
-		this.lostSound.currentTime = 1.5;
-		this.lostSound.play();
+		if(!mute){
+			this.lostSound.currentTime = 1.5;
+			this.lostSound.play();
+		}
+
 		if(this.player.score === -1) {
 			this.player.score = 0;
 		}
