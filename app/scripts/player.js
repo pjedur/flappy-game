@@ -38,21 +38,15 @@ window.Player = (function() {
 
 	Player.prototype.onFrame = function(delta) {
 		this.checkCollisionWithBounds();
-		this.checkCollisionWithPipes();
 
 		if(Controls.didJump()) {
 			this.game.isPlaying = true;
 			this.acceleration = 0;
 			this.rotation     = 23;
-			this.pos.y -= delta * SPEED*27;
 			this.game.sound.currentTime = 0;
 			this.game.sound.play();
-			/*
-			var el = document.getElementById('lol');
-			var st = window.getComputedStyle(el, null);
- 			var tr = st.getPropertyValue("-webkit-transform");
+			this.pos.y -= delta * SPEED*23;
 
-			console.log(tr);*/
 
 			this.el.css('transform','translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + this.rotation + 'deg)');
 			return;
@@ -71,16 +65,10 @@ window.Player = (function() {
 		if (this.pos.y + HEIGHT + GROUND_SIZE > this.game.WORLD_HEIGHT) {
 			return this.game.gameover();
 		}
-	};
 
-	Player.prototype.checkCollisionWithPipes = function() {
-			for (var i = 0; i < this.pipes.pipes.length; i+= 2) {
-
-			if(Math.floor(this.pipes.pipes[i].x) === -60) {
-
-					console.log("hit");
-
-				if(this.pipes.pipes[i].y <= this.pos.y && (this.game.WORLD_HEIGHT- 5.6 -this.pipes.pipes[i+1].y) >= this.pos.y) {
+		for (var i = 0; i < this.pipes.pipes.length; i+= 2) {
+			if(Math.floor(this.pipes.pipes[i].x) < -60  && Math.floor(this.pipes.pipes[i].x) > -70) {
+				if((this.pipes.pipes[i].y <= this.pos.y) && ((this.game.WORLD_HEIGHT- GROUND_SIZE - this.pipes.pipes[i+1].y) >= this.pos.y)) {
 					this.score += 1;
 					if(this.score > this.highScore) {
 						this.highScore = this.score;
@@ -88,7 +76,6 @@ window.Player = (function() {
 				}
 				else {
 					return this.game.gameover();
-
 				}
 			}
 		}

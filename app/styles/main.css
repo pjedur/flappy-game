@@ -13,7 +13,6 @@
 .Player-wings {
 	position:absolute;
 	left: -35%;
-	/*top: 60%;*/
 	bottom: 15%;
 	height: 2em;
 	width: 3.5em;
@@ -22,6 +21,19 @@
 	background-image: url("/images/wing.ico");
 	-webkit-transform-origin: top left;
 	animation: 0.4s flap alternate infinite;
+}
+
+.Player-wings-extra {
+	position:absolute;
+	left: -35%;
+	bottom: 15%;
+	height: 2em;
+	width: 3.5em;
+
+	background: cover;
+	background-image: url("/images/wing.ico");
+	-webkit-transform-origin: top left;
+	animation: 0.1s flap alternate infinite;
 }
 
 .Ground1 {
@@ -81,7 +93,7 @@
 	top: 0;
 	right: 0;
 	width: 7em;
-	background-image: url("/images/pip.png");
+	background-image: url("/images/pipB.png");
 	background-size: cover;
 	-webkit-transform: rotate(45deg);
 	transform: rotate(45deg);
@@ -92,7 +104,7 @@
 	bottom: 0;
 	right: 0;
 	width: 7em;
-	background-image: url("/images/pip.png");
+	background-image: url("/images/pipB.png");
 	background-size: cover;
 }
 .Pipe2 {
@@ -109,7 +121,7 @@
   bottom: 0;
   right: 0;
   width: 7em;
-  background-image: url("/images/pip.png");
+  background-image: url("/images/pipB.png");
 	background-size: cover;
 }
 
@@ -127,7 +139,7 @@
   bottom: 0;
   right: 0;
   width: 7em;
-  background-image: url("/images/pip.png");
+  background-image: url("/images/pipB.png");
 	background-size: cover;
 }
 
