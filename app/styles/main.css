@@ -4,8 +4,9 @@
 	left: 0;
 	width: 5em;
 	height: 5em;
-	background: blue;
+	/*background: blue;*/
 	background-size: cover;
+	background-image: url("/images/grumpy.png");
 }
 
 
