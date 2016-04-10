@@ -47,6 +47,12 @@ window.Player = (function() {
 			this.pos.y -= delta * SPEED*27;
 			this.game.sound.currentTime = 0;
 			this.game.sound.play();
+			/*
+			var el = document.getElementById('lol');
+			var st = window.getComputedStyle(el, null);
+ 			var tr = st.getPropertyValue("-webkit-transform");
+
+			console.log(tr);*/
 
 			this.el.css('transform','translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + this.rotation + 'deg)');
 			return;
@@ -70,7 +76,6 @@ window.Player = (function() {
 	Player.prototype.checkCollisionWithPipes = function() {
 			for (var i = 0; i < this.pipes.pipes.length; i+= 2) {
 
-			//	if(this.pipes.el[i].offset().left <= 749 && this.pipes.el[i].offset().left >= 743) {
 			if(Math.floor(this.pipes.pipes[i].x) === -60) {
 
 					console.log("hit");
@@ -83,7 +88,7 @@ window.Player = (function() {
 				}
 				else {
 					return this.game.gameover();
-					//this.score++;
+
 				}
 			}
 		}
